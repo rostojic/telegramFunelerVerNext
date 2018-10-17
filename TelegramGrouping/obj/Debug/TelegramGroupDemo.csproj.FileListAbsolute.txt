@@ -1,0 +1,14 @@
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\bin\Debug\DataGridGroupDemo.exe.config
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\bin\Debug\DataGridGroupDemo.exe
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\bin\Debug\DataGridGroupDemo.pdb
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\Window1.g.cs
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\App.g.cs
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\DataGridGroupDemo_MarkupCompile.cache
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\DataGridGroupDemo_MarkupCompile.lref
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\Window1.baml
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\DataGridGroupDemo.g.resources
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\TelegramGroupDemo.csproj.CoreCompileInputs.cache
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\DataGridGroupDemo.exe
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\DataGridGroupDemo.pdb
+C:\Users\rostojic\Desktop\DataGridGroupDemo\DataGridGroupDemo\obj\Debug\TelegramGroupDemo.csprojAssemblyReference.cache
