@@ -5,75 +5,28 @@
 	Title="Telegram Grid: Posvećen Koči, koji nije hteo da publikuje ovo rešenje :)"
 	>
 	<Window.Resources>
-		<local:GroupsToTotalConverter x:Key="groupsConverter" />
 	</Window.Resources>
 	<Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition  ></RowDefinition>
-            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="*" ></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid ItemsSource="{Binding TelegramsView}" VerticalAlignment="Stretch"  Grid.Column="0"  Grid.Row="0" Margin="0,0,0,30" Grid.RowSpan="2" >
-                    <DataGrid.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <DockPanel Background="LightBlue">
-                                        <TextBlock Text="{Binding Path=Name, Converter={StaticResource completeConverter}}"
-										Foreground="Blue" Margin="30,0,0,0" Width="100" />
-                                    </DockPanel>
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-
-                            <GroupStyle.ContainerStyle>
-                                <Style TargetType="{x:Type GroupItem}" >
-                                    <Setter Property="Margin" Value="0,0,0,5" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                <Expander
-												BorderBrush="#FF002255"
-												IsExpanded="True"
-												Background="Tan"
-												BorderThickness="0,0,0,1">
-                                                    <Expander.Header>
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock VerticalAlignment="Center"
-															FontWeight="Bold"
-															Text="{Binding Path=Name}"
-															Width="500" />
-                                                            <TextBlock VerticalAlignment="Center"
-															Text="Item count:" />
-                                                            <TextBlock FontWeight="Bold"
-															Text="{Binding ItemCount}" />
-                                                            <!--<TextBlock VerticalAlignment="Center"
-															TextAlignment="Right"
-															Width="100"
-															Text="Amount" />-->
-                                                            <!--<TextBlock FontWeight="Bold"
-															VerticalAlignment="Center"
-															Text="{Binding Path=Items, Converter={StaticResource groupsConverter}}" />-->
-                                                        </StackPanel>
-                                                    </Expander.Header>
-                                                    <Expander.Content>
-                                                        <ItemsPresenter />
-                                                    </Expander.Content>
-                                                </Expander>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </GroupStyle.ContainerStyle>
-                        </GroupStyle>
-                    </DataGrid.GroupStyle>
-                </DataGrid>
-            <StackPanel  Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="1"  Height="25" >
-                <Button Command="{Binding removeGroupCommand}">Remove Group </Button>
-                <Button Command="{Binding groupByTelegramCommand}"> Group By Telegram ID </Button>
-                <Button Command="{Binding groupByFileNameCommand}"> Group By Log file name</Button>
-                <TextBlock Text="{Binding fileNames}"></TextBlock>
-            </StackPanel>
+        <DataGrid Margin="5" 
+             AutoGenerateColumns="False"  ColumnWidth="*"  VerticalAlignment="Stretch"   Name="dgTel" Grid.Row="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="30" Header="Tlg" Binding="{Binding TelegramId}"></DataGridTextColumn>
+                <DataGridTextColumn Width="70*" Header="Text" Binding="{Binding FileLine}"></DataGridTextColumn>
+                <DataGridTextColumn Width="25*" Header="Filename" Binding="{Binding FileName}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="1"  Height="50" >
+            <Button Name="btnLoadFiles" Click="Button_Click">Load files</Button>
+            <TextBlock Name="txtFileName" Margin="4" VerticalAlignment="Center" Text="{Binding FileName}"></TextBlock>
+         </StackPanel>
+        <ProgressBar Background="Blue" Name="progress" Grid.Row="2"  />
     </Grid>
 </Window>
