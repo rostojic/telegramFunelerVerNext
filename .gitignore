@@ -1,4 +1,6 @@
 TelegramGrouping/obj/*.*
+TelegramGrouping/bin/Debug/*.*
+TelegramGrouping/obj/Debug/*.*
 .vs/TelegramFunelerVerNext/v15/.suo
 .vs/TelegramFunelerVerNext/v15/Server/sqlite3/db.lock
 .vs/TelegramFunelerVerNext/v15/Server/sqlite3/storage.ide
