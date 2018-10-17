@@ -1,11 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: Sylwek
- * Date: 2015-04-24
- * Time: 20:46
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
+﻿
 using DataGridGroupDemo.Models;
 using DataGridGroupDemo.ViewModels;
 using Microsoft.Win32;
@@ -32,28 +25,34 @@ namespace DataGridGroupDemo
 	/// </summary>
 	public partial class Window1 : Window
     {
-        ObservableCollection<Telegram> Telegrams;
+        List<Telegram> Telegrams;
+        ICollectionView cvTelegrams;
 
         CancellationTokenSource cancelToken;
 
         Progress<double> progressOperation;
-    
+        Progress<string> progressFileName;
 
+ 
         public Window1()
 		{
 			InitializeComponent();
-            Telegrams = new ObservableCollection<Telegram>();
+            Telegrams = new List<Telegram>();
+
         }
 
 
-        async Task<ObservableCollection<Telegram>> LoadTelegramsAsync(CancellationToken ct, IProgress<double> progress)
+        async Task<List<Telegram>> LoadTelegramsAsync(CancellationToken ct, IProgress<double> progress, IProgress<string> fileName)
         {
             Telegrams.Clear();
-            
             var task = Task.Run(async () => {
                 int recCount = 0;
-                foreach (var file in TelegramsViewModel.fileNames)
+                StringBuilder allFilesLoaded = new StringBuilder();
+                foreach (var file in LoadedFileNames.fileNames)
                 {
+                    allFilesLoaded.Append(file);
+                    allFilesLoaded.Append("; ");
+                    fileName.Report(allFilesLoaded.ToString());
                     string[] allLInes = await GetAllLines(file);
                     long total = allLInes.GetLongLength(0);
                     foreach (var line in allLInes)
@@ -62,12 +61,23 @@ namespace DataGridGroupDemo
                         {
                             if (Regex.IsMatch(line, pattern))
                             {
-                                Telegrams.Add(new Telegram
+                                bool isStartedWithP = Regex.Matches(line, "\"([^\"]*)\"")[0].ToString().StartsWith("\"P");
+                                if (!isStartedWithP)
                                 {
-                                    TelegramId = pattern.Substring(pattern.Length - 2),
-                                    FileLine = line,
-                                    FileName = file
-                                });
+                                    string tc = Regex.Matches(line, "\"([^\"]*)\"")[0].ToString();
+                                    string tlgId = pattern.Substring(pattern.Length - 2);
+                                    int tlgLocPrefStart = 0;
+                                    TelegramConstants.TelegramLocationPrefixes.TryGetValue(tlgId, out tlgLocPrefStart);
+                                    var tlg = new Telegram
+                                    {
+                                        TelegramId = tlgId,
+                                        DateAndTime = line.Substring(0, 23),
+                                        TelegramContent = tc,
+                                        FileName = file,
+                                        LocationPrefix = tlgLocPrefStart == 0 ? "NOLOC" : tc.Substring(tlgLocPrefStart, 4)
+                                    };
+                                    Telegrams.Add(tlg);
+                                }
                             }
                         }
                         ++recCount;
@@ -84,6 +94,7 @@ namespace DataGridGroupDemo
             return await task;
         }
 
+     
         async Task<string[]> GetAllLines(string fileName)
         {
             using (var reader = File.OpenText(fileName))
@@ -106,7 +117,7 @@ namespace DataGridGroupDemo
             {
                 foreach (string filename in openFileDialog.FileNames)
                 {
-                    TelegramsViewModel.fileNames.Add(filename);
+                    LoadedFileNames.fileNames.Add(filename);
                 }
                 return  true;
             }
@@ -116,7 +127,7 @@ namespace DataGridGroupDemo
             }
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Load_Files_Click(object sender, RoutedEventArgs e)
         {
             bool go =  DoLoadFiles();
             if (!go)
@@ -127,15 +138,13 @@ namespace DataGridGroupDemo
             cancelToken = new CancellationTokenSource();
             btnLoadFiles.IsEnabled = false;
             progressOperation = new Progress<double>(value => progress.Value = value);
+            progressFileName = new Progress<string>(value => txtFileName.Text = value);
             try
             {
-                var Telgs = await LoadTelegramsAsync(cancelToken.Token, progressOperation);
-
-                foreach (var item in Telgs)
-                {
-                    dgTel.Items.Add(item);
-                }
-            }
+                var Telgs = await LoadTelegramsAsync(cancelToken.Token, progressOperation, progressFileName);
+                cvTelegrams = CollectionViewSource.GetDefaultView(Telegrams);
+                dgTel.ItemsSource = cvTelegrams;
+               }
             catch (OperationCanceledException ex1)
             {
 
@@ -144,14 +153,66 @@ namespace DataGridGroupDemo
             catch (Exception ex2)
             {
                 throw;
-                //txtstatus.Text = "Operation cancelled" + ex.Message;
             }
             finally
             {
                 cancelToken.Dispose();
                 btnLoadFiles.IsEnabled = true;
-                //btnCancel.IsEnabled = false;
             }
         }
-	}
+
+        private bool TextFilter(object o)
+        {
+            Telegram t = (o as Telegram);
+            if (t == null)
+                return false;
+            
+            if(cboFilterChoice.SelectedIndex == 0)
+            {
+                if (t.TelegramId == txtFilterValue.Text)
+                    return true;
+                else
+                    return false;
+            }
+            else if (cboFilterChoice.SelectedIndex == 1)
+            {
+                if (t.LocationPrefix == txtFilterValue.Text)
+                    return true;
+                else
+                    return false;
+            }
+            else if (cboFilterChoice.SelectedIndex == 2)
+            {
+                if (t.DateAndTime.StartsWith(txtFilterValue.Text))
+                    return true;
+                else
+                    return false;
+            }
+            else 
+            {
+                if (t.FileName == txtFilterValue.Text)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+
+        private void btnFilterClear_Click(object sender, RoutedEventArgs e)
+        {
+            if(cvTelegrams != null)
+            {
+                cvTelegrams.Filter = null;
+                txtFilterValue.Text = string.Empty;
+            }
+        }
+
+        private void btnSetFilter_Click(object sender, RoutedEventArgs e)
+        {
+            if (cvTelegrams != null)
+            {
+                cvTelegrams.Filter = TextFilter;
+            }
+        }
+    }
 }

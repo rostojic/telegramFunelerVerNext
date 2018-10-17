@@ -12,7 +12,9 @@ namespace DataGridGroupDemo.Models
 	public class Telegram
 	{
 		public string TelegramId	{set; get;}
-		public string FileLine		{set; get;}
-		public string FileName		{set; get;}
+		public string DateAndTime	{set; get;}
+        public string TelegramContent { set; get; }
+        public string LocationPrefix { set; get; }
+        public string FileName		{set; get;}
 	}
 }
