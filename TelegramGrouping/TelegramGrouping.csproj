@@ -68,7 +68,6 @@
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Commands\TelegramViewCommands.cs" />
     <Compile Include="Models\Telegrams.cs" />
     <Compile Include="Models\TelegramConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +84,8 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

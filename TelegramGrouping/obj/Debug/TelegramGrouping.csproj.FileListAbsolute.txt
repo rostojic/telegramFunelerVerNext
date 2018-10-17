@@ -17,7 +17,6 @@ C:\Projects\TelegramFunelerVerNext\TelegramGrouping\bin\Debug\DataGridGroupDemo.
 C:\Projects\TelegramFunelerVerNext\TelegramGrouping\obj\Debug\TelegramGrouping.csprojAssemblyReference.cache
 C:\Projects\TelegramFunelerVerNext\TelegramGrouping\obj\Debug\Window1.g.cs
 C:\Projects\TelegramFunelerVerNext\TelegramGrouping\obj\Debug\App.g.cs
-C:\Projects\TelegramFunelerVerNext\TelegramGrouping\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Projects\TelegramFunelerVerNext\TelegramGrouping\obj\Debug\DataGridGroupDemo_MarkupCompile.cache
 C:\Projects\TelegramFunelerVerNext\TelegramGrouping\obj\Debug\DataGridGroupDemo_MarkupCompile.lref
 C:\Projects\TelegramFunelerVerNext\TelegramGrouping\obj\Debug\Window1.baml
