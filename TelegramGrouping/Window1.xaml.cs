@@ -115,6 +115,7 @@ namespace DataGridGroupDemo
 
             if (openFileDialog.ShowDialog() == true)
             {
+                HosueKeeping();
                 foreach (string filename in openFileDialog.FileNames)
                 {
                     LoadedFileNames.fileNames.Add(filename);
@@ -125,6 +126,13 @@ namespace DataGridGroupDemo
             {
                 return false;
             }
+        }
+
+        private void HosueKeeping()
+        {
+            Telegrams.Clear();
+            LoadedFileNames.fileNames.Clear();
+            dgTel.ItemsSource = null;
         }
 
         private async void Button_Load_Files_Click(object sender, RoutedEventArgs e)
