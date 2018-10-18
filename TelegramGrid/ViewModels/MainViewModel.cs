@@ -14,7 +14,6 @@ namespace TelegramGrid.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Telegram> Telegrams { get; set; }
-        
 
         private object _telegramLock = new object();
 
@@ -59,7 +58,6 @@ namespace TelegramGrid.ViewModels
         public void LoadAllTelegrams()
         {
             ViewCounter = true;
-            int recCount = 0;
             StringBuilder allFilesLoaded = new StringBuilder();
             foreach (var file in LoadedFileNames.fileNames)
             {
@@ -90,9 +88,7 @@ namespace TelegramGrid.ViewModels
                             }
                         }
                     }
-                    ++recCount;
                 }
-                recCount = 0;
             }
             ViewCounter = false;
         }
