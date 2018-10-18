@@ -1,14 +1,13 @@
-﻿namespace DataGridGroupDemo.Models
+﻿using System.ComponentModel;
+
+namespace TelegramGrid.Models
 {
-    /// <summary>
-    /// Description of Oredr.
-    /// </summary>
-    public class Telegram
-	{
-		public string TelegramId	{set; get;}
-		public string DateAndTime	{set; get;}
-        public string TelegramContent { set; get; }
-        public string LocationPrefix { set; get; }
-        public string FileName		{set; get;}
-	}
+    public class Telegram 
+    {
+        public string TelegramId { get; set; }
+		public string DateAndTime { get; set; }
+        public string TelegramContent { get; set; }
+        public string LocationPrefix { get; set; }
+        public string FileName { get; set; }
+    }
 }

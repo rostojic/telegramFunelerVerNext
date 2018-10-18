@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace DataGridGroupDemo.ViewModels
+namespace TelegramGrid.ViewModels
 {
     /// <summary>
     /// Description of TelegramsViewModel.
