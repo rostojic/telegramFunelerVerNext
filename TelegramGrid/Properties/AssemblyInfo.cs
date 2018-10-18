@@ -9,13 +9,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DataGridGroupDemo")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Telegram grid")]
+[assembly: AssemblyDescription("Filter your LOG files as you never did before")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DataGridGroupDemo")]
-[assembly: AssemblyCopyright("Copyright 2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Vanderlande")]
+[assembly: AssemblyProduct("TelegramGrid")]
+[assembly: AssemblyCopyright("Copyright 2018")]
+[assembly: AssemblyTrademark("Cika Rade")]
 [assembly: AssemblyCulture("")]
 
 // This sets the default COM visibility of types in the assembly to invisible.

@@ -32,10 +32,10 @@
                 <ComboBoxItem Name="file">File =</ComboBoxItem>
             </ComboBox>
             <TextBox Margin="4,0,4,0" FontSize="14" Width="200" Text="7063" VerticalAlignment="Center" Name="txtFilterValue"></TextBox>
-            <Button Padding="3,0,3,0" Margin="5,0,5,0" Click="btnSetFilter_Click" Name="btnSetFilter" FontSize="14">Filter by selection</Button>
+            <Button Padding="3,0,3,0" Margin="5,0,5,0" Click="btnSetFilter_Click" Name="btnSetFilter" FontSize="14">Filter by text input</Button>
             <Button Padding="3,0,3,0" Click="btnFilterClear_Click" Name="btnFilterClear" FontSize="14">Clear Filter</Button>
         </StackPanel>
         <ProgressBar VerticalAlignment="Center" Name="progress" Grid.Row="2" Height="8"  />
-        <TextBlock TextWrapping="Wrap" Margin="4,0,4,0" VerticalAlignment="Center" Grid.Row="3" Name="txtFileName"></TextBlock>
+        <TextBlock FontSize="10" TextWrapping="Wrap" Margin="4,0,4,0" VerticalAlignment="Center" Grid.Row="3" Name="txtFileName"></TextBlock>
     </Grid>
 </Window>

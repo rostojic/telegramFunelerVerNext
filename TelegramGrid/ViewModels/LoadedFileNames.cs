@@ -1,11 +1,4 @@
-﻿
-using System;
-using DataGridGroupDemo.Models;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Windows.Data;
-using System.Windows.Input;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 
 
 namespace DataGridGroupDemo.ViewModels

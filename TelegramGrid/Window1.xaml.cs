@@ -1,9 +1,7 @@
-﻿
-using DataGridGroupDemo.Models;
+﻿using DataGridGroupDemo.Models;
 using DataGridGroupDemo.ViewModels;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -12,20 +10,16 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 
 namespace DataGridGroupDemo
 {
-	/// <summary>
-	/// Interaction logic for Window1.xaml
-	/// </summary>
-	public partial class Window1 : Window
+    /// <summary>
+    /// Interaction logic for Window1.xaml
+    /// </summary>
+    public partial class Window1 : Window
     {
-        List<Telegram> Telegrams;
+        ObservableCollection<Telegram> Telegrams;
         ICollectionView cvTelegrams;
 
         CancellationTokenSource cancelToken;
@@ -33,16 +27,16 @@ namespace DataGridGroupDemo
         Progress<double> progressOperation;
         Progress<string> progressFileName;
 
- 
+        public object Deployment { get; private set; }
+
         public Window1()
 		{
 			InitializeComponent();
-            Telegrams = new List<Telegram>();
-
+            Telegrams = new ObservableCollection<Telegram>();
         }
 
 
-        async Task<List<Telegram>> LoadTelegramsAsync(CancellationToken ct, IProgress<double> progress, IProgress<string> fileName)
+        async Task<ObservableCollection<Telegram>> LoadTelegramsAsync(CancellationToken ct, IProgress<double> progress, IProgress<string> fileName)
         {
             Telegrams.Clear();
             var task = Task.Run(async () => {
