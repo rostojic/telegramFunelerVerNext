@@ -9,7 +9,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" ></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <DataGrid Margin="5,2,5,8" IsReadOnly="True" ItemsSource="{Binding Telegrams}"
              AutoGenerateColumns="False"   ColumnWidth="*"  VerticalAlignment="Stretch"   Name="dgTel" Grid.Row="0">
@@ -20,7 +19,7 @@
                 <DataGridTextColumn Width="5*" Header="Location" Binding="{Binding LocationPrefix}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="1"  Height="Auto" >
+        <DockPanel Margin="5"  VerticalAlignment="Bottom" Grid.Row="1"  Height="Auto" >
             <Button Padding="3,0,3,0" Name="btnLoadFiles" Click="Button_Load_Files_Click" FontSize="14" >Load Log file(s)</Button>
             <ComboBox FontSize="14" Name="cboFilterChoice" VerticalAlignment="Center" Margin="4,0,4,0" Width="150">
                 <ComboBoxItem Name="tlg">Telegram id = </ComboBoxItem>
@@ -31,7 +30,7 @@
             <TextBox Margin="4,0,4,0" FontSize="14" Width="200" Text="7063" VerticalAlignment="Center" Name="txtFilterValue"></TextBox>
             <Button Padding="3,0,3,0" Margin="5,0,5,0" Click="btnSetFilter_Click" Name="btnSetFilter" FontSize="14">Filter by text input</Button>
             <Button Padding="3,0,3,0" Click="btnFilterClear_Click" Name="btnFilterClear" FontSize="14">Clear Filter</Button>
-        </StackPanel>
-        <TextBlock FontSize="14" TextWrapping="Wrap" Margin="4,0,4,0" VerticalAlignment="Center" Grid.Row="2" Visibility="{Binding ViewCounter, Converter={StaticResource BoolToVis}}" Text="{Binding Telegrams.Count}" Name="txtFileName"></TextBlock>
+            <TextBlock HorizontalAlignment="Right" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center"  Visibility="{Binding ViewCounter, Converter={StaticResource BoolToVis}}" Text="{Binding Telegrams.Count}" Name="txtFileName"></TextBlock>
+        </DockPanel>
     </Grid>
 </Window>
