@@ -1,0 +1,41 @@
+﻿<Window x:Class="DataGridGroupDemo.Window1"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Telegram Grid: Posvećen Koči, koji nije hteo da publikuje ovo rešenje. Samim tim, neće ni dobiti 200 dinara! :)"
+	>
+
+	<Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" ></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DataGrid Margin="5,2,5,8" IsReadOnly="True"
+             AutoGenerateColumns="False"   ColumnWidth="*"  VerticalAlignment="Stretch"   Name="dgTel" Grid.Row="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Width="25" Header="Tg" Binding="{Binding TelegramId}"></DataGridTextColumn>
+                <DataGridTextColumn Width="120" Header="Time" Binding="{Binding DateAndTime}"></DataGridTextColumn>
+                <DataGridTextColumn Width="85*" Header="Content" Binding="{Binding TelegramContent}"></DataGridTextColumn>
+                <DataGridTextColumn Width="5*" Header="Location" Binding="{Binding LocationPrefix}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="1"  Height="Auto" >
+            <Button Padding="3,0,3,0" Name="btnLoadFiles" Click="Button_Load_Files_Click" FontSize="14" >Load Log file(s)</Button>
+            <ComboBox FontSize="14" Name="cboFilterChoice" VerticalAlignment="Center" Margin="4,0,4,0" Width="150">
+                <ComboBoxItem Name="tlg">Telegram id = </ComboBoxItem>
+                <ComboBoxItem Name="loc" IsSelected="True">Location = </ComboBoxItem>
+                <ComboBoxItem Name="time">Time starts with ...</ComboBoxItem>
+                <ComboBoxItem Name="file">File =</ComboBoxItem>
+            </ComboBox>
+            <TextBox Margin="4,0,4,0" FontSize="14" Width="200" Text="7063" VerticalAlignment="Center" Name="txtFilterValue"></TextBox>
+            <Button Padding="3,0,3,0" Margin="5,0,5,0" Click="btnSetFilter_Click" Name="btnSetFilter" FontSize="14">Filter by text input</Button>
+            <Button Padding="3,0,3,0" Click="btnFilterClear_Click" Name="btnFilterClear" FontSize="14">Clear Filter</Button>
+        </StackPanel>
+        <ProgressBar VerticalAlignment="Center" Name="progress" Grid.Row="2" Height="8"  />
+        <TextBlock FontSize="10" TextWrapping="Wrap" Margin="4,0,4,0" VerticalAlignment="Center" Grid.Row="3" Name="txtFileName"></TextBlock>
+    </Grid>
+</Window>
