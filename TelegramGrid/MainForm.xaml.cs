@@ -66,6 +66,7 @@ namespace TelegramGrid
             try
             {
                 _vm.StartLoadingAllTelegrams();
+                //_vm.LoadAllTelegrams();
              }
             catch (OperationCanceledException ex1)
             {

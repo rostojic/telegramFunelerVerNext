@@ -90,7 +90,7 @@ namespace TelegramGrid.ViewModels
                     }
                 }
             }
-            ViewCounter = false;
+            //ViewCounter = false;
         }
     }
 }
