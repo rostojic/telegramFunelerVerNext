@@ -17,3 +17,6 @@ TelegramGrouping/obj/Debug/DataGridGroupDemo.g.resources
 TelegramGrouping/obj/Debug/DataGridGroupDemo.exe
 TelegramGrid/bin/
 TelegramGrid/obj/
+TelegramGrid/TelegramGrid.csproj.user
+.gitignore
+*.user
